@@ -43,45 +43,6 @@
 
 ---
 
-## 📁 Project Structure
-
-backend/
-│
-├── config/ # DB config and connections
-│
-├── controllers/ # Route controller logic
-│
-├── middlewares/ # Error handling and async utilities
-│
-├── models/ # Mongoose models
-│
-├── routes/ # Express route files
-│
-└── index.js # Main server file
-
-
-### Frontend
-frontend/
-│
-├── public/          # Static files (index.html, favicon, etc.)
-│
-├── src/
-│   ├── assets/      # Images, fonts, icons, etc.
-│   ├── components/  # Reusable React components (Navbar, Footer, etc.)
-│   ├── pages/       # React page components (Home, Product, Cart, etc.)
-│   ├── services/    # API calls and data fetching logic
-│   ├── styles/      # CSS or Tailwind config files
-│   ├── App.js       # Main app component
-│   ├── index.js     # React entry point
-│
-└── package.json     # Frontend dependencies and scripts
-
-
-yaml
-Copy code
-
----
-
 ## ⚙️ Setup Instructions
 
 1. Clone the repository:
@@ -91,23 +52,23 @@ Copy code
 
 2. Install backend dependencies:
 
-bash
-Copy code
+
+```bash
 npm install
+```
 
 3. Create a .env file in backend/ and add your environment variables:
 
-ini
-Copy code
+```bash
 PORT=5000
 MONGO_URI=your_mongodb_uri
+```
 
 4. Start the server:
 
-bash
-Copy code
+```bash
 nodemon backend/index.js
-
+```
 
 ## Contact
 
