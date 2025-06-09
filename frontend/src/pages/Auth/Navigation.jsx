@@ -1,12 +1,12 @@
 import React from 'react'
 import { useState } from 'react'
-import { AiOutlineHome, AiOutlineShopping, AiOutlineLogin, AiOutlineUserAdd, AiOutlineShoppingCart, AiOutlineInfoCircle} from 'react-icons/ai'
+import { AiOutlineHome, AiOutlineShopping, AiOutlineLogin, AiOutlineUserAdd, AiOutlineShoppingCart, AiOutlineInfoCircle, AiOutlineUser} from 'react-icons/ai'
 import {FaHeart} from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import './Navigation.css'
 import { useSelector, useDispatch } from 'react-redux'
-import { useLoginMutation } from '../../redux/api/usersApiSlice'
+import { useLogoutMutation } from '../../redux/api/usersApiSlice'
 import { logout } from '../../redux/features/auth/authSlice'
 
 export const Navigation = () => {
@@ -28,7 +28,7 @@ export const Navigation = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const [logoutApiCall]  =useLoginMutation()
+    const [logoutApiCall]  =useLogoutMutation()
     const logoutHandler = async()=>{
         try{
             await logoutApiCall().unwrap()
@@ -67,13 +67,71 @@ export const Navigation = () => {
         </div>
 
         <div className="relative">
-            <button onClick={toggleDropdown}className="flex items-center text-gray-8000 focus:outline-none">
-                {userInfo ? <span className='text-white'
-                >{userInfo.username}</span> : <></>}
-            </button>
+            
+            <div
+                className="flex items-center justify-center xl:justify-start transition-transform transform hover:translate-x-2 mt-[2rem] cursor-pointer"
+                onClick={toggleDropdown}
+                >
+                <span className={`hidden nav-item-name font-bold text-xl`}>{userInfo?.username}</span>
+
+                    {userInfo && (
+                        <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className={`h-4 w-4 ml-1 ${dropdownOpen ? 'transform rotate-180' : ''}`}
+                        fill="none"
+                        stroke="white"
+                        viewBox="0 0 24 24"
+                        >
+                        <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d={dropdownOpen ? 'M5 15l7-7 7 7' : 'M19 9l-7 7-7-7'}
+                        />
+                        </svg>
+                    )}
+                </div>
+
+
+
+            {dropdownOpen && userInfo && (
+                <ul className={`absolute right-0 mt-2 mr-14 space-y-2 bg-white text-gray-600 ${!userInfo.isAdmin ? "-top-20" : "-top-80"
+                }`}>
+                    {userInfo.isAdmin && (
+                        <>
+                        <li>
+                            <Link to='/admin/dashboard' className='block px-4 py-2 hover:bg-gray-100'>Dashboard</Link>
+                        </li>
+                        <li>
+                            <Link to='/admin/productlist' className='block px-4 py-2 hover:bg-gray-100'>Products</Link>
+                        </li>
+                        <li>
+                            <Link to='/admin/categorylist' className='block px-4 py-2 hover:bg-gray-100'>Categories</Link>
+                        </li>
+                        <li>
+                            <Link to='/admin/orderlist' className='block px-4 py-2 hover:bg-gray-100'>Orders</Link>
+                        </li>
+                        <li>
+                            <Link to='/admin/userlist' className='block px-4 py-2 hover:bg-gray-100'>Users</Link>
+                        </li>
+                       
+                        </>
+                    )}
+                     <li>
+                            <Link to='/profile' className='block px-4 py-2 hover:bg-gray-100'>Profile</Link>
+                        </li>
+                        <li>
+                            <button onClick={logoutHandler}
+                            className='block w-full px-4 py-2 text-left hover:bg-gray-100'>Logout</button>
+                        </li>
+                </ul>
+            )}
         </div>
 
 
+            {!userInfo  && (
+
+           
         <ul>
             <li>
                 <Link to='/login' className='flex items-center transition-transform transform hover:translate-x-2'>
@@ -86,6 +144,8 @@ export const Navigation = () => {
             </Link>
             </li>
         </ul>
+         )
+            }
     </div>
   )
 }
