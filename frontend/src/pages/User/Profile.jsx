@@ -44,40 +44,96 @@ const Profile = () => {
   }
 
   return (
-    <div className='conatiner mx-auto p-4 mt-[10rem]'>
-        <div className="flex justify-center align-center md:flex md:space-x-4">
-          <div className="md:w-1/3">
-          <h2 className="text-2xl font-semibold mb-4">Update Profile</h2>
-
-          <form onSubmit={submitHandler}>
-            <div className='mb-4'>
-              <label className="block mb-2">Name</label>
-              <input type="text" placeholder='Enter Name' className='form-input p-4 w-full' value={username} onChange={(e)=> setUsername(e.target.value)} />
-            </div>
-            <div className='mb-4'>
-              <label className="block mb-2">Email</label>
-              <input type="email" placeholder='Enter Email' className='form-input p-4 w-full' value={email} onChange={(e)=> setEmail(e.target.value)} />
-            </div>
-            <div className='mb-4'>
-              <label className="block mb-2">Password</label>
-              <input type="password" placeholder='Enter Password' className='form-input p-4 w-full' value={password} onChange={(e)=> setPassword(e.target.value)} />
-            </div>
-            <div className='mb-4'>
-              <label className="block mb-2">Confirm Password</label>
-              <input type="password" placeholder='Confirm Password' className='form-input p-4 w-full' value={confirmPassword} onChange={(e)=> setConfirmPassword(e.target.value)} />
-            </div>
-
-            <div className="flex justify-between">
-              <button type='submit' className='py-2 px-4 rounded bg-black text-white'>Update Profile
-              </button>
-            <Link to='/user-orders' className='py-2 px-4 rounded bg-black text-white'>My Orders</Link>
-            </div>
-          </form>
-          </div>
-
-          {loadingUpdateProfile && <Loader/>}
-        </div>
+   <div className="container mx-auto px-4  text-[#2B1B17]">
+  <div className="md:flex md:space-x-8">
+    
+    {/* Left: Static Welcome Message */}
+    <div className="md:w-1/3 mb-8 md:mb-0 bg-[#EFEBE9] p-8 uppercase tracking-wide border border-[#5C4033] min-h-screen mt-0">
+      <h2 className="text-2xl font-bold mb-6 border-b-2 text-[#8D6E63] pb-2">
+        Welcome Back
+      </h2>
+      <p className="mb-4 text-sm leading-relaxed">
+        Keep your account information accurate and secure.
+      </p>
+      <div className="text-sm space-y-2 mt-6">
+        <p><span className="font-semibold">User Type:</span> Registered</p>
+        <p><span className="font-semibold">Account Status:</span> Active</p>
+        <p><span className="font-semibold">Email Verified:</span> Yes</p>
+      </div>
     </div>
+
+    {/* Right: Update Form */}
+    <div className="md:w-2/3 mt-5">
+      <h2 className="text-2xl font-bold mb-6 uppercase tracking-wide text-[#8D6E63]">
+        Update Profile
+      </h2>
+
+      <form onSubmit={submitHandler} className="space-y-6">
+        <div>
+          <label className="block mb-2 uppercase text-sm tracking-wide">Name</label>
+          <input
+            type="text"
+            placeholder="Enter Name"
+            className="w-full border border-[#5C4033] bg-[#efebe9] text-[#2B1B17] px-4 py-3 focus:outline-none"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
+
+        <div>
+          <label className="block mb-2 uppercase text-sm tracking-wide">Email</label>
+          <input
+            type="email"
+            placeholder="Enter Email"
+            className="w-full border border-[#5C4033] bg-[#efebe9] text-[#2B1B17] px-4 py-3 focus:outline-none"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+
+        <div>
+          <label className="block mb-2 uppercase text-sm tracking-wide">Password</label>
+          <input
+            type="password"
+            placeholder="Enter Password"
+            className="w-full border border-[#5C4033] bg-[#efebe9] text-[#2B1B17] px-4 py-3 focus:outline-none"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+
+        <div>
+          <label className="block mb-2 uppercase text-sm tracking-wide">Confirm Password</label>
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            className="w-full border border-[#5C4033] bg-[#efebe9] text-[#2B1B17] px-4 py-3 focus:outline-none"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+        </div>
+
+        <div className="flex justify-between">
+          <button
+            type="submit"
+            className="py-2 px-6 bg-[#5C4033] text-white uppercase tracking-wide border hover:bg-[#D7CCC8] hover:text-[#8d6e63] hover:border=[#8d6e63]"
+          >
+            Update Profile
+          </button>
+          <Link
+            to="/user-orders"
+            className="py-2 px-6 bg-[#5C4033] text-white uppercase tracking-wide border hover:bg-[#D7CCC8] hover:text-[#8d6e63] hover:border=[#8d6e63]"
+          >
+            My Orders
+          </Link>
+        </div>
+      </form>
+
+      {loadingUpdateProfile && <Loader />}
+    </div>
+  </div>
+</div>
+
   )
 }
 
