@@ -3,6 +3,7 @@ import { useCreateCategoryMutation, useDeleteCategoryMutation, useFetchCategorie
 import CategoryForm from '../../components/CategoryForm'
 import { toast } from 'react-toastify'
 import Modal from '../../components/Modal'
+import AdminMenu from './AdminMenu'
 
 
 const CategoryList = () => {
@@ -80,6 +81,7 @@ const CategoryList = () => {
 
   return (
     <div className="ml-[10rem] flex flex-col md:flex-row  min-h-screen">
+      <AdminMenu />
   <div className="md:w-3/4 p-6">
     <h1 className="text-4xl font-bold text-[#8d6e63] mb-6"> Manage Categories</h1>
 

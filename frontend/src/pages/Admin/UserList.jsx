@@ -5,6 +5,7 @@ import Loader from '../../components/Loader';
 import Message from '../../components/Message'
 import { FaCheck, FaEdit, FaTimes, FaTrash } from 'react-icons/fa';
 import { toast } from 'react-toastify';
+import AdminMenu from './AdminMenu';
 
 const UserList = () => {
 
@@ -53,6 +54,7 @@ const UserList = () => {
 
   return (
     <div className='p-6 bg-[#d7ccc8] min-h-screen ml-[3.5rem]'>
+  <AdminMenu />
   <h1 className="text-3xl font-bold text-[#4e342e] mb-6">Users</h1>
 
   {isLoading ? (
